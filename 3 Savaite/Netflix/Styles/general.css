@@ -1,0 +1,22 @@
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../assets/Images/bg-netflix.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 95vh;
+}
+
+.bg-color {
+    background-color: black;
+    opacity: 95%;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1140px;
+}

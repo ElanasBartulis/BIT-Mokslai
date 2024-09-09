@@ -4,26 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Sign-Up Clone</title>
+
     <link rel="stylesheet" href="./Styles/header.css">
     <link rel="stylesheet" href="./Styles/main.css">
     <link rel="stylesheet" href="./Styles/footer.css">
+    <link rel="stylesheet" href="./Styles/general.css">
+
+    <!-- Google Fonts ROBOTO -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Google Fonts ROBOTO -->
+    
 </head>
 <body>
-    <header>
-        <nav>
-            <div id="logo">
+        <header>
+            <nav class="container">
+                <div id="logo">
+                    <img src="./assets/Images/Netflix_Logo_PMS.png" alt="Netflix Logo">
+                </div>
+            </nav>
+        </header>
+    
+        <main>
+            <section class="container">
+                <div class="center-content">
+                    <div class="sign-in-black-box">
+                        <header>
+                            <h1>Sign In</h1>
+                        </header>
 
-            </div>
-        </nav>
-    </header>
+                        <form>
+                            <input type="text" placeholder="Email or mobile number">
+                            <input type="text" placeholder="Password">
+                            <button class="red">Sign In</button>
+                            <p>OR</p>
+                            <button class="grey">Use a Sign-In Code</button>
+                            <a href="#">Forgot password?</a>
+                        </form>
 
-    <main>
-
-    </main>
-
-    <footer>
-
-    </footer>
+                        <footer>
+                            <div class="remember-me-checkbox">
+                                <input type="checkbox" name="checkbox">
+                                <label for="checkbox">Remember me</label>
+                            </div>
+                            <p>New to Netflix? <span>Sign up now.</span></p>
+                            <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#">Learn more.</a></p>
+                        </footer>
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+        <footer>
+    
+        </footer>
 
 </body>
 </html>
