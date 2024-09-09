@@ -47,7 +47,7 @@ main {
     }
 
     .red {
-        background-color: red;
+        background-color: #E50914;
         color: white;
     }
     
@@ -90,6 +90,6 @@ main {
         column-gap: 10px;
     }
 
-    
+
 
 }
