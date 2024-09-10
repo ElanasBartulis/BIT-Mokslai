@@ -2,7 +2,7 @@ main {
 
     .sign-in-black-box {
         background-color: rgba(0, 0, 0, 0.7);
-        margin: 0 auto;
+        margin: 50px auto;
         max-width: 314px;
         min-height: 570px;
         padding: 48px 68px;
@@ -82,12 +82,15 @@ main {
 
     }
 
-    .remember-me-checkbox {
+    .remember-me-check {
         display: flex;
+        align-items: center;
+        gap: 10px;
     }
     
-    .remember-me-checkbox input {
-        padding: 20px;
+    .remember-me-check input {
+        width: 20px;
+        height: 20px;
     }
 
     footer p {
