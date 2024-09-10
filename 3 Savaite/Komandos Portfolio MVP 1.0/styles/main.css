@@ -1,0 +1,107 @@
+main {
+
+    .bg-color {
+        background-color: #F0EFEF;
+    }
+
+    .company-logos {
+        padding: 100px 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .company-logos img {
+        width: 150px;
+    }
+
+    /* COLAB */
+
+    .h2-text {
+        width: 615px;
+    }
+    
+    .h2-text h2 {
+        font-size: 36px;
+        text-align: center;
+    }
+    
+    .colab-container {        
+        display: flex;
+        justify-content: center;
+        padding: 100px 0;
+    }
+
+    /* LINIJA */
+
+    .line {
+        margin: 0 auto;
+        width: 85%;
+        border-bottom: 1px solid #c4c4c4;
+    }
+
+    /* Services-Box */
+
+    .colab {
+        position: relative;
+    }
+
+    .services-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 90px;
+        background-color: #fff;
+        border-radius: 50px;
+        font-weight: 500;
+        border: 1px solid #c4c4c4;
+    }
+
+    .box-center-container {
+        position: absolute;
+        bottom: -20px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    /* SKILLS */
+
+    .skills {
+        background-color: #F0EFEF;
+    }
+
+    .skills-icon {
+        font-size: 44px;
+    }
+
+    .skills-box-container {
+        display: flex;
+        justify-content: center;
+        padding: 100px 0;
+    }
+
+    .skills-container {
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .skills-container h6 {
+        font-size: 18px;
+    }
+
+    .skills-container p {
+        font-size: 14px;
+    }
+
+    .skill-box {
+        width: 183px;
+        height: 152px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+}
