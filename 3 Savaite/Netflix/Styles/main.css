@@ -4,7 +4,7 @@ main {
         background-color: rgba(0, 0, 0, 0.7);
         margin: 50px auto;
         max-width: 314px;
-        min-height: 570px;
+        min-height: 630px;
         padding: 48px 68px;
     }
 
@@ -26,7 +26,8 @@ main {
     }
 
     form input {
-        padding: 1.5rem 1rem 0.5rem;
+        background-color: rgba(21, 21, 21, 0.7) !important;
+        padding: 1rem 1rem;
         font-size: 1rem;
         line-height: 1.5;
         background: transparent;
