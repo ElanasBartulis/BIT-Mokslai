@@ -1,0 +1,35 @@
+body,
+body * {
+    margin:0;
+    padding:0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 48px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    color: white;
+    background-color: black;
+}
+
+nav a:hover {
+    color: black;
+    background-color: #fff;
+}
+
