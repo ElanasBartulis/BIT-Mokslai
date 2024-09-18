@@ -8,12 +8,11 @@ const gbpUsd = 1.32;
 const usdGbp = 0.76;
 
 
-
 if(turimaValiuta == "GBP" || turimaValiuta == "USD" || turimaValiuta == "EUR") {
     let trokstamaValiuta = prompt(`I Kokia valiuta norite pakeisti ${turimaValiuta} (Galimi pasirinkimai : GBP, USD, EUR)`);
     if(trokstamaValiuta == "GBP" || trokstamaValiuta == "USD" || trokstamaValiuta == "EUR") {
         let valiutosKiekis = prompt('Kiek Valiutos norime pakeisti?')
-
+        
         if(turimaValiuta == "GBP" && trokstamaValiuta == "EUR"){
            let result = valiutosKiekis * gbpEur;
             result = Number(result).toFixed(2);
