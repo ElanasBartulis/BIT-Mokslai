@@ -5,23 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="bankas.css">
 </head>
 
 <body>
-    <h3 id="greeting">Sveiki, {vardas}</h3>
-    <p id="balance">Jusu balansas: {x}$</p>
-    <div>
-        <input type="number" placeholder="Iveskite Islaidas" id="islaiduInput" />
-        <button onclick="isleistiPinigus()">Isleisti pinigus</button>
-    </div>
-    <hr>
-    <div>
-        <input type="number" placeholder="Iveskite kiek pinigu inesate" id="inasoInput" />
-        <button onclick="inestiPinigus()">Inesti pinigus</button>
-    </div>
-    <hr>
-    <div>
-        <button id="alga" onclick="gautiAlga()">Gauti Alga</button>
+    <div class="container">
+        <div class="info">
+            <h3 id="greeting">Sveiki, {vardas}</h3>
+            <p id="balance">Jusu balansas: {x}$</p>
+            <span>Metalo kaina uz tona 588.70$</span>
+        </div>
+        <div>
+            <input type="number" placeholder="Iveskite Islaidas" id="islaiduInput" />
+            <button class="red" onclick="isleistiPinigus()">Isleisti pinigus</button>
+        </div>
+
+        <div>
+            <input type="number" placeholder="Iveskite kiek pinigu inesate" id="inasoInput" />
+            <button onclick="inestiPinigus()">Inesti pinigus</button>
+        </div>
+
+        <div>
+            <input type="number" placeholder="Iveskite kiek KG metalo turite" id="metaloInput" />
+            <button onclick="pridetiMetaloKaina()">Prideti metala</button>
+        </div>
+
+        <div>
+            <button id="alga" onclick="gautiAlga()">Gauti Alga</button>
+        </div>
     </div>
 
     <script src="bankoFunkcijos.js"></script>

@@ -1,4 +1,4 @@
-const vardas = "Justinas", algosDydis = 800;
+const vardas = "Elanas", algosDydis = 800;
 let balancas = 100; // number
-const metaloKainaTona = 588.70;
+const kainasUzTona = 588.70;
 init();
