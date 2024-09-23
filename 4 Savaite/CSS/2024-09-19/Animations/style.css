@@ -1,0 +1,32 @@
+body,
+body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    background-color: black;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    border: 20px solid white;
+    border-bottom-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
