@@ -1,0 +1,9 @@
+.sarasas2 table { 
+    border-collapse: collapse;
+}
+
+.sarasas2 th, td {
+    border: 1px solid black; 
+    text-align: center;
+    padding: 10px;
+}
