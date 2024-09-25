@@ -153,7 +153,7 @@ function createHtmlList(masyvas, rezimas) {
   else if (rezimas === 2) element.innerHTML = `<ol>${masyvas.map((x) => `<li>${x}</li>`).join("")}</ol>`;
 }
 
-createHtmlList(darbuotojai);
+createHtmlList(darbuotojai, 'asf');
 
 /* 
 9. Patobulinkite funkciją createHtmlList pridėdami jai papildomą parametrą rezimas. createHtmlList(masyvas, rezimas). Jei rezimas yra 
