@@ -122,7 +122,11 @@ console.log(sumAll(generateRandomNumberArray(100)));
 //   swap([1,2,3,4,5], 0, 3); //[4, 2, 3, 1, 5]
 
 function swap(masyvas, a, b) {
-    
+
+    let temp = masyvas[a];
+    masyvas[a] = masyvas[b];
+    masyvas[b] = temp;
+    return masyvas;
 }
 
-console.log(swap([1,2,3,4], 0));
+console.log(swap([1,2,3,4], 0,2));
