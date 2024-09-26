@@ -130,3 +130,16 @@ function swap(masyvas, a, b) {
 }
 
 console.log(swap([1,2,3,4], 0,2));
+
+// 9. Sukurkite funkciją average(arr), kuri atranda visų masyve pateiktų skaičių vidurkį; PVZ: average([1,2,3,4,5])//3
+
+
+function average(arr){
+    for(let i of arr) {
+        const sum = arr.reduce((prev, next) => prev + next);
+        const result = sum / arr.length
+        return result;
+    }
+}
+
+console.log(average([1,2,3,4,5]))
