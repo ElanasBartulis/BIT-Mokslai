@@ -143,3 +143,12 @@ function average(arr){
 }
 
 console.log(average([1,2,3,4,5]))
+
+// 10. Sukurkite funkciją findAllUniqueNumbers(masyvas), kuri atranda masyve esančius unikalius skaičius. 
+// gražina juos masyvo pavidalu: pvz: findAllUniqueNumbers([1,1,2,8,8,1, 4, 6]) // [1,2,8,4,6];
+
+function findAllUniqueNumbers(masyvas) {
+    return [...new Set(masyvas)];
+}
+
+console.log(findAllUniqueNumbers([1,1,2,8,8,1, 4, 6]));
