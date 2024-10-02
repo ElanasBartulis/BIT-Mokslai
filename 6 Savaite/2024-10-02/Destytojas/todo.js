@@ -17,23 +17,40 @@ let informacija = {
     status: '',
 }
 
-function pridetiUzduoti() {
-    //gauti ivesti
-    const ivestiesElement = document.querySelector('.ivestis');
-    const ivestis = ivestiesElement.value;
-
-    // ideti ivesti text
-    const titleElement = document.querySelector('.title');
-    titleElement.innerText = ivestis;
-    
-    // ideti ivesties date
-    const taskDateElement = document.querySelector('.task-date');
-    taskDateElement.innerText = gautiDabartineDataTekstu();
+function info(infoObjektas = {title: '', date: '', status: ''}) {
+    const result = {
+        title: infoObjektas.title,
+        date: infoObjektas.date,
+        status: infoObjektas.status,
+    }
+    return result;
 }
 
-function uzduotisAtlikta() {
+function getIvestis() {
+    const ivestiesElement = document.querySelector('.ivestis').value;
+    const data = gautiDabartineDataTekstu();
 
+    const ivestiesInformacija = {
+        title: ivestiesElement,
+        date: data,
+        status: 'active',
+    }
+
+    const tasks = document.querySelector('.tasks');
+
+    const task = `<div class="task active mt-3 bg-white p-2 d-flex justify-content-between align-items-center rounded">
+						<span class="title">${ivestiesInformacija.title}</span>
+						<i class="task-date ms-4 d-inline-block">${ivestiesInformacija.date}</i>
+						<div class="btn-group">
+							<button class="btn btn-primary" onclick="uzduotisAtlikta()">Užduotis atlikta</button>
+							<button class="btn btn-danger" onclick='istrinti()'>Ištrinti</button>
+						</div>
+					</div>`
+
+    tasks.innerHTML += task;
 }
+
+
 
 function gautiDabartineDataTekstu() {
 	const dabartineData = new Date();
