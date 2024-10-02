@@ -152,3 +152,25 @@ function findAllUniqueNumbers(masyvas) {
 }
 
 console.log(findAllUniqueNumbers([1,1,2,8,8,1, 4, 6]));
+
+// 11. Sukurkite funkciją findStatistics(masyvas), kuri suskaičiuoja, kiek yra kiekvieno skaičiaus masyve. PVZ:
+// findStatistics([1,1,4,7,4,6])  Atliekant šią funkciją konsolėje turi matytis:
+// Skaičius 1 pasikartojo 2 kartus
+// Skaičius 4 pasikartojo 2 kartus
+// Skaičius 7 pasikartojo 1 kartus
+// Skaičius 6 pasikartojo 1 kartus
+
+// const masyvoPvz = [1,1,4,7,4,6];
+
+// function findStatistics(masyvas) {
+//     const duplicate = [];
+    
+//     for(let i=0; i < masyvas.length; i++) {
+//         if(indexOf(masyvas[i]) == masyvas[i]) {
+//             duplicate.push(masyvas[i]);
+//         }
+//     }
+//     return duplicate;
+// }
+
+// console.log(findStatistics(masyvoPvz));
