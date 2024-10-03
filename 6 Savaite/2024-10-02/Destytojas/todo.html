@@ -19,10 +19,7 @@
 			crossorigin="anonymous"
 			defer
 		></script>
-		<script
-			src="todo.js"
-			defer
-		></script>
+
 		<link
 			rel="stylesheet"
 			href="todo.css"
@@ -40,7 +37,7 @@
 					class="btn btn-primary"
 					type="button"
 					id="button-addon2"
-                    onclick="getIvestis()"
+                    onclick="pridetiTask()"
 				>
 					Pridėti užduotį
 				</button>
@@ -48,27 +45,19 @@
 			<!-- AKTYVIOS UŽDUOTYS -->
 			<div class="p-4 border">
 				<h5 class="border-4 border-bottom border-primary">Aktyvios užduotys</h5>
-				<div class="tasks">
-					
+				<div class="active-tasks">
+
 				</div>
 			</div>
 
 			<!-- PABAIGTOS UŽDUOTYS -->
 			<div class="p-4 border mt-5">
 				<h5 class="border-4 border-bottom border-primary">Atliktos užduotys</h5>
-				<div class="tasks">
-					<div
-						class="task mt-3 p-2 d-flex justify-content-between align-items-center rounded bg-light"
-					>
-						<span class="title">Užduoties pavadinimas</span>
-						<i class="task-date ms-4 d-inline-block">2024-10-02</i>
-						<div class="btn-group">
-							<button class="btn btn-primary">Gražinti užduotį</button>
-							<button class="btn btn-danger">Ištrinti</button>
-						</div>
-					</div>
+				<div class="finished-tasks">
+
 				</div>
 			</div>
 		</main>
+		<script src="todo.js"></script>
 	</body>
 </html>

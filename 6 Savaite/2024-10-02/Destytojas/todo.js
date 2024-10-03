@@ -11,46 +11,81 @@
 }
 */
 
-let informacija = {
-    title: '',
-    date: '',
-    status: '',
-}
+let tasks = [];
+let taskId = 1;
 
-function info(infoObjektas = {title: '', date: '', status: ''}) {
-    const result = {
-        title: infoObjektas.title,
-        date: infoObjektas.date,
-        status: infoObjektas.status,
-    }
-    return result;
-}
+function pridetiTask() {
+    const ivestisElement = document.querySelector('.ivestis');
+    const ivestis = ivestisElement.value;
 
-function getIvestis() {
-    const ivestiesElement = document.querySelector('.ivestis').value;
-    const data = gautiDabartineDataTekstu();
-
-    const ivestiesInformacija = {
-        title: ivestiesElement,
-        date: data,
+    const newIvestis = {
+        id: taskId++,
+        title: ivestis,
         status: 'active',
+        date: gautiDabartineDataTekstu(),
     }
 
-    const tasks = document.querySelector('.tasks');
-
-    const task = `<div class="task active mt-3 bg-white p-2 d-flex justify-content-between align-items-center rounded">
-						<span class="title">${ivestiesInformacija.title}</span>
-						<i class="task-date ms-4 d-inline-block">${ivestiesInformacija.date}</i>
-						<div class="btn-group">
-							<button class="btn btn-primary" onclick="uzduotisAtlikta()">Užduotis atlikta</button>
-							<button class="btn btn-danger" onclick='istrinti()'>Ištrinti</button>
-						</div>
-					</div>`
-
-    tasks.innerHTML += task;
+    tasks.push(newIvestis);
+    renderHtml();
+    ivestis.value = '';
 }
 
 
+function renderHtml() {
+    const activeTask = document.querySelector('.active-tasks');
+    const finsihedTask = document.querySelector('.finished-tasks');
+
+    activeTask.innerHTML = '';
+    finsihedTask.innerHTML = '';
+
+    tasks.forEach(task => {
+        const taskItem = 
+        `<div class="task mt-3 p-2 d-flex justify-content-between align-items-center rounded bg-white">
+				<span class="title">${task.title}</span>
+				<i class="task-date ms-4 d-inline-block">${task.date}</i>
+				<div class="btn-group">
+                    ${task.status === 'active' ? `<button class="btn btn-primary" onclick='atliktaUzduotis(${task.id})'>Atlikta užduotis</button>` 
+                    : `<button class="btn btn-primary" onclick='grazintiUzduoti(${task.id})'>Grazinti užduoti</button>`}
+					<button class="btn btn-danger" onclick='istrinti(${task.id})' >Ištrinti</button>
+				</div>
+		</div>`;
+
+        if(task.status === 'active'){
+            activeTask.innerHTML += taskItem;
+        } else {
+            finsihedTask.innerHTML += taskItem;
+        }
+    })
+}
+
+
+function atliktaUzduotis(id) {
+    const findId = tasks.find(task => {
+        if(task.id === id) {
+            console.log(task);
+            task.status = 'finished';
+        }
+        renderHtml();
+    });
+
+    return findId;
+}
+
+function grazintiUzduoti(id) {
+    console.log('veikiu')
+}
+
+function istrinti(id) {
+    const findTask = tasks.find(task => {
+        if(task.id === id) {
+            tasks.splice(task, 1);
+            console.log(task);
+        }
+        renderHtml()
+    })
+
+    return findTask;
+}
 
 function gautiDabartineDataTekstu() {
 	const dabartineData = new Date();

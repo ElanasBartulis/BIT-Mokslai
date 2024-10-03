@@ -16,3 +16,7 @@ body * {
 .delete {
     display: none;
 }
+
+.finished {
+    display: inline-block;
+}
