@@ -62,7 +62,6 @@ function renderHtml() {
 function atliktaUzduotis(id) {
     const findId = tasks.find(task => {
         if(task.id === id) {
-            console.log(task);
             task.status = 'finished';
         }
         renderHtml();
@@ -72,19 +71,22 @@ function atliktaUzduotis(id) {
 }
 
 function grazintiUzduoti(id) {
-    console.log('veikiu')
+    const findId = tasks.find(task => {
+        if(task.id === id) {
+            task.status = 'active';
+        }
+        renderHtml();
+    })
+    return findId;
 }
 
 function istrinti(id) {
-    const findTask = tasks.find(task => {
-        if(task.id === id) {
-            tasks.splice(task, 1);
-            console.log(task);
-        }
-        renderHtml()
-    })
+    const findIndex = tasks.findIndex(task => task.id === id);
 
-    return findTask;
+    if(findIndex !== -1) {
+        tasks.splice(findIndex, 1);
+    }
+    renderHtml();
 }
 
 function gautiDabartineDataTekstu() {
