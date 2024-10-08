@@ -31,13 +31,6 @@ function addNewTodoTask() {
   saveTodoTasks(taskList);
   updateTodoList();
 }
-  // Čia tūrėtumėte padaryti:
-  // 2. Patikrinti, kad inputas nebūtų tuščias. DONE
-  // 3. Gauti value iš select pasirinkto varianto - (#assingListOption - select elementas). DONE
-  // 4. Patikrinti, kad select nebūtų tuščias. DONE
-  // 5. Gauti iš funkcijos getTodoTasks sąrašą iš localStorage DONE
-  // 6. Pridėti naują užduotį į localStorage naudojant funkcija saveTodoTasks(data) -- data siunčiame užduoties masyva DONE
-  // 7. Atnaujiname sąraša
 
 
 // Savaitės dienos pasirinkimas
@@ -47,61 +40,28 @@ function selectDay(day, dayText, element) {
   // 2. Uždėti tekstą pagal parametra dayText į elementą (.selectedDayText)
   // 3. Atnaujinti selectedDay kintamajį į pasirinktą dieną
   // 4. Atnaujinti sąrašą
-  const weekListElement = document.querySelector('.weekListElement');
-  
+  const weekListElement = document.querySelectorAll('.weekListElement');
+  const selectDayElement = document.querySelector('.selectedDayText');
+
+  weekListElement.forEach(x => x.classList.remove('active'));
+  element.classList.add('active');
+  selectDayElement.innerText = `${dayText} uzduotis:`;
+  selectedDay = day;
 }
-selectDay('monday', 'Pirmadienio', this);
 
 // Atnaujinti sąraša į HTML
 function updateTodoList() {
-  let getTodo = getTodoTasks();
-  const listContainerElement = document.querySelector('.listContainer');
-  const values = document.querySelector('#assingListOption');
-  const selectDayText = document.querySelector('.selectedDayText');
-  let htmlText = '';
-  let divBlock;
-  
-  for(let i in getTodo) {
-    if(getTodo === undefined) {
-      return;
-    }
+    const taskList = getTodoTasks();
+    const listContainerElement = document.querySelector('.listContainer');
     
-    let todoInput = getTodo[i].input;
+    taskList.forEach((value, index) => {
+      console.log(value.select, selectedDay);
+      if(value.select == selectedDay) {
+        
+      }
+      }
+)
 
-    divBlock = listContainerElement.innerHTML = htmlText += `  
-    <div class="todo">
-    <article>
-        <input type="checkbox" onclick="markAsDoneTask(${getTodo[i].id})"/>
-        <span>${todoInput}</span>
-    </article>
-    <div class="btnContainer">
-        <button onclick="editTodoTask(${getTodo[i].id})">
-        <i class="fa-solid fa-pen-to-square blue"></i>
-        </button>
-        <button onclick="deleteTodoTask(${getTodo[i].id})"><i class="fa-solid fa-trash red"></i></button>
-    </div>
-  </div>`
-
-    if(values.value === 'monday') {
-      selectDayText.innerText = 'Pirmadienis';
-      divBlock;
-    }
-    if(values.value === 'tuesday') {
-      selectDayText.innerText = 'Antradienis';
-      divBlock;
-    }
-    if(values.value === 'wednesday') {
-      selectDayText.innerText = 'Treciadienis';
-      divBlock;
-    }
-    if(values.value === 'thursday') {
-      selectDayText.innerText = 'Ketvirtadienis';
-      divBlock;
-    }
-    if(values.value === 'friday') {
-      selectDayText.innerText = 'Penktadienis';
-      divBlock;
-    }
 
 }
 
@@ -124,7 +84,7 @@ function updateTodoList() {
   //         <button onclick="deleteTodoTask(${index})"><i class="fa-solid fa-trash red"></i></button>
   //     </div>
   //   </div>
-}
+
 
 // Užduoties pažymėjimas, kad padarytą funkcija
 function markAsDoneTask(id) {
