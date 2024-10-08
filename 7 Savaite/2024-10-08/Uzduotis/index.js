@@ -46,12 +46,54 @@ const prekesDaugiau1IrZemiau3 = prekes.filter(value => (value.kaina > 1 && value
 // 6.  Raskite prekę, kurios pavadinimas: ‘Kava’. Jos reikšmę pakeiskite į ‘Kavos pupelės’.
 
 const pakeistiReiksme = (v) => {
-    const surastiKava = v.find(value => value.pavadinimas == "Kava");
-    const paverskStringIrPakeisk = surastiKava.pavadinimas.replace(surastiKava.pavadinimas, 'Kavos pupelės');
-    v.map(value => {
-        
+    const something = v.map(value => {
+        return {
+            barkodas: value.barkodas, 
+            pavadinimas: value.pavadinimas == "Kava" ? value.pavadinimas.replace('Kava', 'Kavos pupelės') : value.pavadinimas, 
+            kaina: value.kaina 
+        }
     })
+    return something;
 }
 
+// console.log(pakeistiReiksme(prekes));
 
-console.log(pakeistiReiksme(prekes));
+// 7. Prekėms, kurios kainuoja pigiau nei 1.5eur pridėkite pvmProcentas laukelį į šiuos objektus, 
+// šioms prekėms taikomas pvmProcentas: 15%, prekėms kurios yra brangesnės, taikomas pvmProcentas: 
+// 21%. Apskaičiuokite pvmMokestis laukelių reikšmes, pritaikę šį pvmProcentą prie kainos.
+
+const pvmProcentas = (v) => {
+
+    const kaskas = v.map(value => {
+
+        if(value.kaina < 1.5){
+            return {
+                barkodas: value.barkodas, 
+                pavadinimas: value.pavadinimas, 
+                kaina: value.kaina,
+                pvmProcentas: 15,
+                pvmMokestis: +(value.kaina * 0.15).toFixed(2)
+            }
+        }
+            return {
+                barkodas: value.barkodas, 
+                pavadinimas: value.pavadinimas, 
+                kaina: value.kaina,
+                pvmProcentas: 21,
+                pvmMokestis: +(value.kaina * 0.21).toFixed(2)
+            }
+    })
+    return kaskas;
+}
+
+// console.log(pvmProcentas(prekes));
+
+// 8. Raskite prekes, kurios kainuoja pigiau nei 2 eur, ir jų pavadinimas baigiasi raide ‘s’.
+
+const kainaIrGalune = (v) => {
+    const kainaPigiau2 = v.filter(value => value.kaina < 2);
+    const KainaPigiauIrGalune = kainaPigiau2.filter(value => value.pavadinimas.at(-1) == 's');
+    return KainaPigiauIrGalune;
+}
+
+console.log(kainaIrGalune(prekes));
