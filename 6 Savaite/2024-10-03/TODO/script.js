@@ -1,137 +1,241 @@
-let selectedDay = "monday";
+let selectedDay = "monday"; // Default day selection
+
 let editingTaskIndex = 0;
+ 
+// Retrieve tasks from LocalStorage
 
-
-// LocalStorage gavimas
 function getTodoTasks() {
-  const input = localStorage.getItem('taskList');
-  return input ? JSON.parse(input) : [] ;
-}
 
-// LocalStorage išsaugojimas
+  const tasks = localStorage.getItem('taskList');
+
+  return tasks ? JSON.parse(tasks) : []; // Return parsed tasks or an empty array if none exist
+
+}
+ 
+// Save tasks to LocalStorage
+
 function saveTodoTasks(data) {
-localStorage.setItem('taskList', JSON.stringify(data));
-}
 
-// Darbo sukūrimo mygtuko funkcija
+  localStorage.setItem('taskList', JSON.stringify(data)); // Save tasks as a string in LocalStorage
+
+}
+ 
+// Function to add a new task
+
 function addNewTodoTask() {
 
-  const data = {
-    id: editingTaskIndex++,
-    input: document.querySelector('#newTaskInput').value,
-    select: document.querySelector('#assingListOption').value,
-  }
-  
-  if(data.input === '' && data.select === ''){
+  const inputTask = document.querySelector('#newTaskInput').value;
+
+  const assignedDay = document.querySelector('#assingListOption').value;
+ 
+  // Simple validation: Ensure both fields are filled
+
+  if (inputTask === '' || assignedDay === 'default') {
+
+    alert("Please provide a task and select a day!");
+
     return;
+
   }
+ 
+  // Create task object
+
+  const taskData = {
+
+    id: editingTaskIndex++, // Incrementing ID for each new task
+
+    taskName: inputTask,    // Task name
+
+    day: assignedDay,       // Day assignment
+
+    taskIsDone: false       // By default, new tasks are not done
+
+  };
+ 
+  // Retrieve the current task list and add the new task
 
   const taskList = getTodoTasks();
-  taskList.push(data);
+
+  taskList.push(taskData);
+ 
+  // Save the updated task list to LocalStorage
+
   saveTodoTasks(taskList);
+ 
+  // Update the displayed to-do list
+
   updateTodoList();
+ 
+  // Clear the input field after adding the task
+
+  document.querySelector('#newTaskInput').value = '';
+
+  document.querySelector('#assingListOption').value = 'default'; // Reset the dropdown
+
 }
+ 
+// Function to update the to-do list display
 
-
-// Savaitės dienos pasirinkimas
-function selectDay(day, dayText, element) {
-  // Čia tūrėtumėte padaryti:
-  // 1. Uždėti klasę active bei nuimti klase active šiems elementams (#weekListElement).
-  // 2. Uždėti tekstą pagal parametra dayText į elementą (.selectedDayText)
-  // 3. Atnaujinti selectedDay kintamajį į pasirinktą dieną
-  // 4. Atnaujinti sąrašą
-  const weekListElement = document.querySelectorAll('.weekListElement');
-  const selectDayElement = document.querySelector('.selectedDayText');
-
-  weekListElement.forEach(x => x.classList.remove('active'));
-  element.classList.add('active');
-  selectDayElement.innerText = `${dayText} uzduotis:`;
-  selectedDay = day;
-}
-
-// Atnaujinti sąraša į HTML
 function updateTodoList() {
-    const taskList = getTodoTasks();
-    const listContainerElement = document.querySelector('.listContainer');
-    
-    taskList.forEach((value, index) => {
-      console.log(value.select, selectedDay);
-      if(value.select == selectedDay) {
-        
-      }
-      }
-)
 
+  const taskList = getTodoTasks(); // Retrieve all tasks
+
+  const filteredTasks = taskList.filter(task => task.day === selectedDay); // Filter tasks by selected day
+ 
+  const listContainer = document.querySelector('.listContainer');
+
+  listContainer.innerHTML = ''; // Clear the existing list
+ 
+  // Loop through filtered tasks and build the task HTML
+
+  filteredTasks.forEach((task, index) => {
+
+    const taskHtml = `
+<div class="todo">
+<article class="${task.taskIsDone ? 'taskDone' : ''}">
+<input type="checkbox" onclick="markAsDoneTask(${index})" ${task.taskIsDone ? 'checked' : ''} />
+<span>${task.taskName}</span> <!-- Use taskName instead of input -->
+</article>
+<div class="btnContainer">
+<button onclick="editTodoTask(${index})">
+<i class="fa-solid fa-pen-to-square blue"></i>
+</button>
+<button onclick="deleteTodoTask(${index})">
+<i class="fa-solid fa-trash red"></i>
+</button>
+</div>
+</div>
+
+    `;
+
+    listContainer.innerHTML += taskHtml;
+
+  });
 
 }
+ 
+// Mark a task as done or not done
 
+function markAsDoneTask(index) {
 
-  // Čia tūrėtumėte padaryti:
-  // 1. Išskaidyti localStorage masyva bei patikrinti kad jis nebūtų null.
-  // 2. Patikrinti kokia diena yra pasirinkta ir pagal ją išdėsti sąraša.
-  // 3. Vietoj elementoId parašykite masyvo indeksa.
-  // 4. Visą sąraša parodyti html (.listContainer - elemente).
-  //   HTML PRADINĖ SARAŠO STRUKTŪRA
-  // <div class="todo">
-  //     <article class="${item.taskIsDone ? "taskDone" : ""}">
-  //         <input type="checkbox" onclick="markAsDoneTask(${index})" ${item.taskIsDone ? "checked" : ""}/>
-  //         <span>Užduotis #1</span>
-  //     </article>
-  //     <div class="btnContainer">
-  //         <button onclick="editTodoTask(${index})">
-  //         <i class="fa-solid fa-pen-to-square blue"></i>
-  //         </button>
-  //         <button onclick="deleteTodoTask(${index})"><i class="fa-solid fa-trash red"></i></button>
-  //     </div>
-  //   </div>
+  const taskList = getTodoTasks();
 
+  taskList[index].taskIsDone = !taskList[index].taskIsDone; // Toggle the task's 'done' status
 
-// Užduoties pažymėjimas, kad padarytą funkcija
-function markAsDoneTask(id) {
-  // Čia tūrėtumėte padaryti:
-  // 1. Gauti iš localStorage sąrašą
-  // 2. Pasiekti masyvo elementą ir jam uždėti taskIsDone true bei ją nuimti į false
-  // 3. Išsaugoti masyvą į localStorage
-  // 4. Atnaujinti sąrašą.
+  saveTodoTasks(taskList); // Save the updated tasks
+
+  updateTodoList(); // Update the displayed list
+
 }
+ 
+// Function to show the Edit Task modal (editContainer)
 
-// Užduoties koregavimo funkcija
-function editTodoTask(id) {
-  const editContainer = document.querySelector(".editContainer");
-  editContainer.style.display = "flex";
+function showEditContainer() {
 
-  // Čia tūrėtumėte padaryti:
-  // 1. Gauti masyva iš localStorage
-  // 2. Padaryti redagavima masyvo pagal indeksa
-  // 3. Gauti iš masyvo kintamuosius ir juos priskirti (#editInputVal) bei (#assingListOption)
-  // 4. Užpildyti (#editInputVal - inputas) value
-  // 5. Parinkti kuris select'as naudojame .selected savybę buvo pasirinktas ir ją priskiriame forEach (#editAssingListOption > option)
-  // 6. Priskiriame redaguojamo užduoties indeksa į kintamajį editingTaskIndex
+  document.querySelector('.editContainer').style.display = 'block'; // Show the edit container
+
 }
+ 
+// Function to hide the Edit Task modal (editContainer)
 
-// Užduoties ištrinimo funkcija
-function deleteTodoTask(id) {
-  // Čia tūrėtumėte padaryti:
-  // 1. Gauti masyvą iš localStorage
-  // 2. Ištrinti užduotį iš masyvo pagal užduoties masyvo indeksą
-  // 3. Išsaugoti masyvą į localStorage
-  // 4. Atnaujinti sąraša
-}
-
-// Užduoties pakeitimų išsaugojimo funkcija
-function saveEdit() {
-  // Čia tūrėtumėte padaryti:
-  // 1. Gauti masyvą iš localStorage
-  // 2. Gauti value iš šio (#editInputVal) input elemento
-  // 3. Gauti value iš šio (#editAssingListOption) option elemento
-  // 4. Atnaujinti masyvą pagal editingTaskIndex
-  // 5. Išsaugoti masyvą į localStorage
-  // 5. Atnaujinti sąraša
-  // 6. Uždaryti redaguojamą kontainerį galime naudoti funkciją closeEditTodoTask
-}
-
-// Užduoties koregavimo lango uždarymas
 function closeEditTodoTask() {
-  const editContainer = document.querySelector(".editContainer");
-  editContainer.style.display = "none";
+
+  document.querySelector('.editContainer').style.display = 'none'; // Hide the edit container
+
 }
+ 
+// Edit a task
+
+function editTodoTask(index) {
+
+  const taskList = getTodoTasks(); // Get the task list from localStorage
+
+  const taskToEdit = taskList[index]; // Get the specific task to edit
+
+  // Check if task exists and set the values in the modal
+
+  if (taskToEdit) {
+
+    document.querySelector('#editInputVal').value = taskToEdit.taskName; // Set task input
+
+    document.querySelector('#editAssingListOption').value = taskToEdit.day; // Set task day
+
+  }
+ 
+  // Store the task's index so the save function knows which task to update
+
+  editingTaskIndex = index;
+ 
+  // Show the edit modal
+
+  showEditContainer();
+
+}
+ 
+// Save the edited task
+
+function saveEdit() {
+
+  const taskList = getTodoTasks(); // Get task list from localStorage
+ 
+  // Ensure the task index is valid
+
+  if (taskList[editingTaskIndex]) {
+
+    // Retrieve updated values from the input fields
+
+    taskList[editingTaskIndex].taskName = document.querySelector('#editInputVal').value; // Update taskName
+
+    taskList[editingTaskIndex].day = document.querySelector('#editAssingListOption').value; // Update day
+ 
+    // Save the updated task list back to localStorage
+
+    saveTodoTasks(taskList);
+ 
+    // Update the to-do list display in the UI
+
+    updateTodoList();
+ 
+    // Close the edit modal
+
+    closeEditTodoTask();
+
+  } else {
+
+    console.error("Task not found at index:", editingTaskIndex);
+
+  }
+
+}
+ 
+// Delete a task
+
+function deleteTodoTask(index) {
+
+  const taskList = getTodoTasks();
+
+  taskList.splice(index, 1); // Remove the task at the specified index
+
+  saveTodoTasks(taskList); // Save the updated tasks
+
+  updateTodoList(); // Update the displayed list
+
+}
+ 
+// Select a day and update the displayed tasks
+
+function selectDay(day, dayName, element) {
+
+  selectedDay = day; // Update the selected day
+
+  document.querySelector('.selectedDayText').textContent = `${dayName} užduotys:`; // Update the header with the selected day
+
+  document.querySelectorAll('.weekListElement').forEach(el => el.classList.remove('active')); // Remove 'active' from all day elements
+
+  element.classList.add('active'); // Add 'active' to the selected day element
+
+  updateTodoList(); // Update the task list for the selected day
+
+}
+
+ 
