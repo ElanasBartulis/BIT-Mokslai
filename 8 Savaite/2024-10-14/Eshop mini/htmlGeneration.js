@@ -26,46 +26,47 @@ function generateProducts() {
 	const productHTML = document.querySelector(".products");
 	productHTML.innerHTML = parduotuvesProduct;
 }
-
 generateProducts()
 
 function generateProduct(product = produktai) {
 	let html = "";
-	// if (product.discount > 0) html = generateProductWithDiscount(product);
-	// else html = generateProductWithoutDiscount(product);
-	// return html;
-	// price - (price * (discount / 100));
     product.map((value) => {
-		if(value.discount > 0) {
-			const discountedPrice = value.price - (value.price * (value.discount / 100));
-			html += 
-		`<div class="product">
-			<hr />
-			<div class="product-details">
-				<div class="image">
-					<img
-						src="https://placehold.co/200x200"
-						alt="Produkto nuotrauka"
-					/>
-					<span class="discount">${value.discount}%</span>
-				</div>
-				<div class="details">
-					<h4>${value.title}</h4>
-					<p>${value.description}</p>
-				</div>
-				<div class="price-and-actions">
-					<!-- <div class="price">${value.price}€</div> -->
-					<div class="price-with-discount">
-						<span class="discounted">${+discountedPrice}€</span>
-						<span class="old-price">${value.price}€</span>
-					</div> 
-					<button>Add to cart</button>
-				</div>
-			</div>
-		</div>`
-		}else {
-			html += 
-			`<div class="product">
+		if(value.discount > 0) html += generateProductWithDiscount(value);
+		else html += generateProductWithoutDiscount(value);
+	})
+	return html;
+}
+
+function generateProductWithDiscount(value) {
+	const discountedPrice = value.price - (value.price * (value.discount / 100));
+	return 	`<div class="product">
+	<hr />
+	<div class="product-details">
+		<div class="image">
+			<img
+				src="https://placehold.co/200x200"
+				alt="Produkto nuotrauka"
+			/>
+			<span class="discount">${value.discount}%</span>
+		</div>
+		<div class="details">
+			<h4>${value.title}</h4>
+			<p>${value.description}</p>
+		</div>
+		<div class="price-and-actions">
+			<!-- <div class="price">${value.price}€</div> -->
+			<div class="price-with-discount">
+				<span class="discounted">${+discountedPrice}€</span>
+				<span class="old-price">${value.price}€</span>
+			</div> 
+			<button>Add to cart</button>
+		</div>
+	</div>
+</div>`
+}
+
+function generateProductWithoutDiscount(value) {
+	return `<div class="product">
 				<hr />
 				<div class="product-details">
 					<div class="image">
@@ -89,8 +90,4 @@ function generateProduct(product = produktai) {
 					</div>
 				</div>
 			</div>`
-		}
-		
-	})
-	return html;
 }
