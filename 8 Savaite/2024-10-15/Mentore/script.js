@@ -117,14 +117,10 @@
 
 // Parašykite funkciją, kuri pagal vartotojo įvestą balą(nuo 1 iki 10) išspausdina atitinkamą vertinimą: 
 // "Labai gerai", "Gerai", "Patenkinamai" arba "Nepatenkinamai".Kuris operatorius čia tinkamiausias?
-const kaskas = 7;
+const kaskas = 4;
 function vartBalas(value) {
-    switch (value) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
+    switch (true) {
+        case (value < 5):
             console.log('Nepatenkinamai');
             break;
         case 6:
@@ -142,7 +138,7 @@ function vartBalas(value) {
             console.log('The number is not in range 1-10');
     }
 }
-// vartBalas(kaskas);
+vartBalas(kaskas);
 
 
 
@@ -325,4 +321,4 @@ const temp = -7;
 function aprankgosRekomendacija(value){
     return (value <= -10) ? "Geriau neik į lauką" : (value >= -10 && value <= 0) ? "Kepurės reikalingos" : 'Kepurių nereikia';
 }
-console.log(aprankgosRekomendacija(temp));
+// console.log(aprankgosRekomendacija(temp));
