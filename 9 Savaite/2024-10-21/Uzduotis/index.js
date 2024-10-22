@@ -1,9 +1,6 @@
-async function callApi() {
-    const knyguTema = await fetch('https://in3.dev/knygos/types/');
-    const tema = await knyguTema.json();
-    const pilnaKnyguInformacija = await fetch('https://in3.dev/knygos/');
-    const pilnaKnyga = await pilnaKnyguInformacija.json();
-    printHtml(pilnaKnyga, tema);
+async function main() {
+    const booksAndTypes = await getBookAndTema();
+    printHtml(booksAndTypes);
 }
 
 function calculateDate(time){
@@ -13,11 +10,10 @@ function calculateDate(time){
     return formatDate;
 }
 
-function printHtml(knygos, tema){
+function printHtml(param){
     let html = '';
-
-    for(const knyga of knygos){
-        const sameId = tema.find((item)=> item.id === knyga.type);
+    for(const knyga of param.books){
+        const sameId = param.types.find((item)=> item.id === knyga.type);
         const date = calculateDate(knyga.time);
         html += 
         `
@@ -35,4 +31,4 @@ function printHtml(knygos, tema){
     bodyElement.innerHTML = html;
 }
 
-callApi();
+main();
