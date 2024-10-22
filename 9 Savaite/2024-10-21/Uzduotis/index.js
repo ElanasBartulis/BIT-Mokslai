@@ -1,6 +1,9 @@
 async function main() {
     const booksAndTypes = await getBookAndTema();
-    printHtml(booksAndTypes);
+    const book = booksAndTypes.books;
+    const type = booksAndTypes.types;
+    printHtml(book, type);
+    search(book, type);
 }
 
 function calculateDate(time){
@@ -10,10 +13,19 @@ function calculateDate(time){
     return formatDate;
 }
 
-function printHtml(param){
+function search(book, type){
+    const searchInput = document.querySelector("#search");
+    searchInput.addEventListener('input', (event) => {
+        const value = event.target.value.toLowerCase();
+        const filteredBooks = book.filter(x => x.title.toLowerCase().includes(value));
+        printHtml(filteredBooks, type);
+    })
+}
+
+function printHtml(book, type){
     let html = '';
-    for(const knyga of param.books){
-        const sameId = param.types.find((item)=> item.id === knyga.type);
+    for(const knyga of book){
+        const sameId = type.find((item)=> item.id === knyga.type);
         const date = calculateDate(knyga.time);
         html += 
         `
@@ -27,7 +39,7 @@ function printHtml(param){
         </div>
         `
     }
-    const bodyElement = document.querySelector('body');
+    const bodyElement = document.querySelector('.knygos');
     bodyElement.innerHTML = html;
 }
 

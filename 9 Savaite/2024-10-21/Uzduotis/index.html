@@ -7,13 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <img src="#" alt="Knygos nuotrauka">
-        <h2>Title Name</h2>
-        <p><strong>Autorius: </strong><span>{autorius}</span></p>
-        <p><strong>Kaina: </strong><span>{kaina}</span></p>
-        <p><strong>Data: </strong><span>{data}</span></p>
-        <p><strong>Tema: </strong><span>{data}</span></p>
+    <div class="search-wrap">
+        <label>
+            <h4>Search</h4>
+            <input placeholder="Knygos pavadinimas..." type="text" id="search">
+        </label>
+    </div>
+    <div class="knygos">
+        <div>
+            <img src="#" alt="Knygos nuotrauka">
+            <h2>Title Name</h2>
+            <p><strong>Autorius: </strong><span>{autorius}</span></p>
+            <p><strong>Kaina: </strong><span>{kaina}</span></p>
+            <p><strong>Data: </strong><span>{data}</span></p>
+            <p><strong>Tema: </strong><span>{data}</span></p>
+        </div>
     </div>
     <script src="api.js"></script>
     <script src="index.js"></script>

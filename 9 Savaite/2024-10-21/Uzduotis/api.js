@@ -15,5 +15,5 @@ async function getBookAndTema() {
         getTema(),
         getBook(),
     ])
-    return { books: atsakymas[1], types: atsakymas[0]};
+    return { books: atsakymas[1], types: atsakymas[0] };
 }
