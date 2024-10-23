@@ -1,0 +1,64 @@
+body,
+body * {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+
+    p{
+        color: rgb(77, 76, 76);
+        font-weight: 500;
+    }
+}
+
+.box {
+    padding: 1rem;
+    box-shadow: -1px 3px 15px -8px rgba(173,173,173,1);
+    border-radius: 1rem;
+    width: auto;
+    display: grid;
+    place-content: center;
+}
+
+.user {
+    display: flex;
+    gap: 1rem;
+
+    img {
+        border-radius: 0.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .user-details {
+        p {
+            color: rgb(77, 76, 76);
+        }
+    }
+}
+
+.about, .address, .details, .account{
+    margin: 0.5rem 0;
+    h4 {
+        margin-bottom: 1rem;
+    }
+}
+
+span {
+    color: rgb(20, 20, 20);
+    font-weight: 300;
+}
+
+.bi {
+    margin-right: 0.3rem;
+}
