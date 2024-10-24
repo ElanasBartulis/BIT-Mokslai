@@ -80,11 +80,36 @@ person.createNew = function (key, newValue) {
 
 // Užduotis 11: Sukurkite metodą, kuris sukurs objekto kopiją naudojant `Object.assign`.
 
+function copyObj(obj) {
+  return Object.assign(obj);
+}
+// console.log(copyObj(person));
+
 // Užduotis 12: Patikrinkite, ar objektas yra tuščias (neturi jokių savybių).
+
+// console.log(Object.getOwnPropertyNames(person));
 
 // Užduotis 13: Sukurkite įdėtą objektą `address` ir pridėkite jį į `person`.
 
+const address = {
+  gatve: "Savanoriu pr. 18",
+  miestas: "Kaunas",
+  pastoKodas: 12345,
+  kaskas: function () {
+    console.log(`Hello from ${this.kaskas}`);
+  },
+};
+person.address = address;
+// console.log(person);
+
 // Užduotis 14: Sukurkite metodą, kuris giliai kopijuos objektą (deep copy).
+
+function makeCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+const newCopy = makeCopy(address);
+newCopy.gatve = "Nauja";
+console.log(makeCopy(newCopy));
 
 // Užduotis 15: Pridėkite papildomą dinaminę savybę naudojant skliaustų notaciją.
 
