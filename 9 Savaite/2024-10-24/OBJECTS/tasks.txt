@@ -1,0 +1,41 @@
+Užduotys namų darbams:
+
+Užduotis 1: Sukurkite tuščią objektą pavadinimu car ir pridėkite jame savybes brand, model, ir year.
+
+Užduotis 2: Sukurkite metodą, kuris atspausdins automobilio brand savybę.
+
+Užduotis 3: Sukurkite metodą addProperty, kuris pridės naują savybę į objektą dinamiškai.
+
+Užduotis 4: Patikrinkite, ar automobilio objektas turi savybę model, naudodami hasOwnProperty.
+
+Užduotis 5: Sukurkite funkciją, kuri grąžins automobilio objekto visų savybių raktus.
+
+Užduotis 6: Sukurkite funkciją, kuri grąžins visų automobilio objekto savybių reikšmes.
+
+Užduotis 7: Naudodami Object.assign(), nukopijuokite car objektą į naują objektą.
+
+Užduotis 8: Sukurkite metodą, kuris skaičiuos automobilio objekto visų savybių skaičių.
+
+Užduotis 9: Sukurkite metodą, kuris pašalins savybę year iš automobilio objekto.
+
+Užduotis 10: Sukurkite metodą, kuris atnaujins esamą automobilio objekto savybę, pavyzdžiui, model.
+
+Užduotis 11: Sukurkite metodą, kuris sukurs automobilio objekto kopiją naudojant Object.assign.
+
+Užduotis 12: Patikrinkite, ar automobilio objektas yra tuščias (neturi savybių).
+
+Užduotis 13: Sukurkite įdėtą objektą engine su savybėmis type ir horsepower, ir pridėkite jį į automobilio objektą.
+
+Užduotis 14: Sukurkite metodą, kuris giliai kopijuos automobilio objektą (deep copy).
+
+Užduotis 15: Pridėkite papildomą dinaminę savybę, pavyzdžiui, color, naudojant skliaustų notaciją.
+
+Užduotis 16: Pridėkite metodą, kuris aprašys automobilio objektą naudojant esamas savybes, atspausdinant automobilio informaciją.
+
+Užduotis 17: Sukurkite konstruktoriaus funkciją Car, kuri priima brand, model ir year, ir sukurkite naują automobilio objektą.
+
+Užduotis 18: Pridėkite metodą į Car konstruktorių, kuris atspausdins informaciją apie automobilį.
+
+Užduotis 19: Patikrinkite, ar automobilio objektas turi tam tikrą savybę, naudodami in operatorių.
+
+Užduotis 20: Sukurkite automobilio objektą ir užšaldykite jį (Object.freeze()), kad savybės nebūtų keičiamos.
