@@ -109,13 +109,39 @@ function makeCopy(obj) {
 }
 const newCopy = makeCopy(address);
 newCopy.gatve = "Nauja";
-console.log(makeCopy(newCopy));
+// console.log(makeCopy(newCopy));
 
 // Užduotis 15: Pridėkite papildomą dinaminę savybę naudojant skliaustų notaciją.
 
+const notacija = {
+  1: "Apple",
+  2: "Orange",
+  3: "Banana",
+  4: () => {
+    console.log("Hi");
+  },
+};
+// notacija[4]();
+
 // Užduotis 16: Pridėkite metodą, kuris aprašys objektą naudojant esamas savybes.
 
+notacija["pridejau"] = function () {
+  return Object.entries(this);
+};
+
+// console.log(notacija.pridejau());
+
 // Užduotis 17: Sukurkite konstruktoriaus funkciją, kuri priima `name` ir `age`, ir sukurkite naują objektą.
+
+function knowAgeAndName(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greeting = function () {
+    console.log(`Hello my name is ${this.name} and I'm ${this.age} years old`);
+  };
+}
+const person1 = new knowAgeAndName("Jonas", 32);
+// console.log(person1.greeting());
 
 // Užduotis 18: Pridėkite metodą, kuris atspausdins informaciją apie žmogų, naudojant `Person`.
 
