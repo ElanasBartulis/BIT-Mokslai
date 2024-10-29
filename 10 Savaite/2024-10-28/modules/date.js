@@ -1,6 +1,7 @@
 import { language } from "../config.js";
-import datesLang from "../lang/dates.json" with { type: "json" };
-// import datesLang from "../lang/dates.json";
+
+// import datesLang from "../lang/dates.json" with { type: "json" };
+import datesLang from "../lang/dates.js"; // veikiu su firefox
 // import datesLang from "../lang/dates.json" assert { type: "json" };
 
 export function whichDayOfWeek(day) {
