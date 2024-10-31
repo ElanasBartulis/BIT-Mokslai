@@ -1,18 +1,9 @@
 export default class Temperature {
   #celsius;
   #fahrenheit;
-  constructor(celsius, fahrenheit) {
-    this.#celsius = isNaN(celsius)
-      ? (celsius = 0)
-      : celsius > 0
-      ? celsius
-      : +(((fahrenheit - 32) * 5) / 9).toFixed(1);
-
-    this.#fahrenheit = isNaN(fahrenheit)
-      ? (fahrenheit = 0)
-      : fahrenheit > 0
-      ? fahrenheit
-      : +((celsius * 9) / 5 + 32).toFixed(1);
+  constructor() {
+    this.#celsius = 0;
+    this.#fahrenheit = 0;
   }
 
   get celsius() {
