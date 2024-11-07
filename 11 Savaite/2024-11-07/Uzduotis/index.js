@@ -21,18 +21,13 @@ function main() {
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const weekDay = date.getDay();
+  const dayNumberWith0 = day.toString().padStart(2, "0");
 
-  const fullDate = `${year}-${month}-0${day}`;
+  const fullDate = `${year}-${month}-${dayNumberWith0}`;
 
   fs.appendFile(
     `${fullDate}`,
-    `Metai: ${year}\nMenuo: ${
-      dateLanguagesWithMonths[settings.language].months[month]
-    }\nMenesio diena: ${day}\nSavaites Diena: ${
-      dateLanguagesWithMonths[settings.language].days[
-        weekDay === 0 ? 7 : weekDay
-      ]
-    }`,
+    printMsg(year, month, day, weekDay, dateLanguagesWithMonths, settings),
     (err) => {
       if (err) throw new err();
       console.log("Saved!");
@@ -44,4 +39,11 @@ main();
 function perskaitytiFaila(jsonFile) {
   const file = JSON.parse(fs.readFileSync(jsonFile).toString());
   return file;
+}
+function printMsg(year, month, day, weekDay, dateLangJson, settings) {
+  return `Metai: ${year}\nMenuo: ${
+    dateLangJson[settings.language].months[month]
+  }\nMenesio diena: ${day}\nSavaites Diena: ${
+    dateLangJson[settings.language].days[weekDay === 0 ? 7 : weekDay]
+  }`;
 }
