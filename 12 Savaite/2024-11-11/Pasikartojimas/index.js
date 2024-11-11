@@ -5,6 +5,7 @@ server.use(express.json());
 server.listen(3999, () => {
   console.log("Sekmingai paleistas serveris su 3999");
 });
+let skaicius = 0;
 
 const belekas = [
   { 1: "labas", 2: "Kaip", 3: "Tu", 4: "Gyveni" },
@@ -12,7 +13,8 @@ const belekas = [
 ];
 
 server.get("/", (req, res) => {
-  res.send(belekas);
+  skaicius++;
+  res.send({ belekas, skaicius });
 });
 
 server.post("/", (req, res) => {
