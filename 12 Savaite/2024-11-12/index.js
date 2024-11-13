@@ -19,7 +19,7 @@ server.use(cors());
 // });
 
 server.listen(8080, () => {
-	console.log("Express serveris Sėkmingai paleistas. http://localhost:8080");
+  console.log("Express serveris Sėkmingai paleistas. http://localhost:8080");
 });
 
 const idGen = generateId();
@@ -44,65 +44,70 @@ const idGen = generateId();
 // /users
 // GET - Gauti visus useriuss
 server.get("/users", (req, res) => {
-	const users = readFromUsersFile();
-	res.status(200).json(users);
+  const users = readFromUsersFile();
+  res.status(200).json(users);
 });
 
 // /users/:id
 // Gauti konkretų naudotoją pasinaudojant ID
 server.get("/users/:id", (req, res) => {
-	// console.log(req.params); // { id: "9" }
-	const users = readFromUsersFile();
-	const id = Number(req.params.id); //1
-	const user = users.find((usr) => usr.id === id);
-	if (!user) return res.status(404).json({ message: "Naudotojas nerastas" });
+  // console.log(req.params); // { id: "9" }
+  const users = readFromUsersFile();
+  const id = Number(req.params.id); //1
+  const user = users.find((usr) => usr.id === id);
+  if (!user) return res.status(404).json({ message: "Naudotojas nerastas" });
 
-	res.status(200).json(user);
+  res.status(200).json(user);
 });
 
 // POST Naudotoju pridėjimas
 server.post("/users", (req, res) => {
-	// Iš POST request'o gaunami duomenys pasinaudojant req.body
-	const users = readFromUsersFile();
-	const newUser = req.body;
-	newUser.id = idGen.next().value;
-	// users
-	users.push(newUser);
-	writeToUsersFile(users);
-	res.status(201).json(newUser);
+  // Iš POST request'o gaunami duomenys pasinaudojant req.body
+  const users = readFromUsersFile();
+  const newUser = req.body;
+  if (newUser.name === undefined) {
+    if (newUser.age === undefined) {
+      return res.status(404).send("No data included");
+    }
+  }
+  newUser.id = idGen.next().value;
+  // users
+  users.push(newUser);
+  writeToUsersFile(users);
+  res.status(201).json(newUser);
 });
 
 // PUT
 // Atnaujinti naudotojus
 server.put("/users/:id", (req, res) => {
-	const users = readFromUsersFile();
-	const id = Number(req.params.id);
-	const foundUser = users.find((usr) => usr.id === id); // undefined/User
-	if (!foundUser)
-		return res.status(404).json({ message: "Naudotojas nerastas" });
+  const users = readFromUsersFile();
+  const id = Number(req.params.id);
+  const foundUser = users.find((usr) => usr.id === id); // undefined/User
+  if (!foundUser)
+    return res.status(404).json({ message: "Naudotojas nerastas" });
 
-	const updateUserData = req.body; //{ name?: "", age?: ""}
-	if (updateUserData.name) foundUser.name = updateUserData.name;
-	if (updateUserData.age) foundUser.age = updateUserData.age;
-	writeToUsersFile(users);
-	res.status(201).json(foundUser);
+  const updateUserData = req.body; //{ name?: "", age?: ""}
+  if (updateUserData.name) foundUser.name = updateUserData.name;
+  if (updateUserData.age) foundUser.age = updateUserData.age;
+  writeToUsersFile(users);
+  res.status(201).json(foundUser);
 });
 
 // DELETE
 server.delete("/users/:id", (req, res) => {
-	const users = readFromUsersFile();
-	const id = Number(req.params.id);
-	const index = users.findIndex((usr) => usr.id === id); // -1/userIndex
-	if (index === -1) return res.status(404).send("Naudotojas nerastas...");
+  const users = readFromUsersFile();
+  const id = Number(req.params.id);
+  const index = users.findIndex((usr) => usr.id === id); // -1/userIndex
+  if (index === -1) return res.status(404).send("Naudotojas nerastas...");
 
-	users.splice(index, 1);
-	writeToUsersFile(users);
-	res.status(204).json();
+  users.splice(index, 1);
+  writeToUsersFile(users);
+  res.status(204).json();
 });
 
 function* generateId(startId = 0) {
-	while (true) {
-		startId++;
-		yield startId;
-	}
+  while (true) {
+    startId++;
+    yield startId;
+  }
 }

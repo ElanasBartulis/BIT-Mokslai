@@ -1,7 +1,7 @@
 import repository from "./repository.js";
 
 const { getAllUsers, getUserById, addUser, deleteUserById, updateUserById } =
-	repository;
+  repository;
 
 // const users = await getAllUsers();
 // console.log(users);
@@ -10,8 +10,8 @@ const { getAllUsers, getUserById, addUser, deleteUserById, updateUserById } =
 // console.log(user);
 
 // const newUserObject = {
-// 	name: "Tomas",
-// 	age: 29,
+//   name: "Tomas",
+//   age: 29,
 // };
 const newUser = await addUser();
 console.log(newUser);
