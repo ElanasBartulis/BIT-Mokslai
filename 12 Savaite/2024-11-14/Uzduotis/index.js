@@ -3,8 +3,10 @@ import { generateId } from "./idGenerator.js";
 import { getFormattedDate } from "./date.js";
 
 import express from "express";
+import cors from "cors";
 
 const server = express();
+server.use(cors());
 server.use(express.json());
 const idGen = generateId();
 
@@ -69,7 +71,7 @@ server.post("/saskaita/:id/imoka", (req, res) => {
 server.post("/saskaita/:id/ismoka", (req, res) => {
   const allUsers = readFromUser();
   const id = Number(req.params.id);
-  const number = Number(req.body.balance);
+  const number = -Number(req.body.balance);
   const findUser = allUsers.find((usr) => usr.id === id);
 
   if (number > 0 || findUser.balance + number < 0) {

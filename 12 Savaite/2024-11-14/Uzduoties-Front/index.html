@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="user-accounts">
+            <h1>Account List</h1>
+            <ol id="user-list">
+
+            </ol>
+        </div>
+
+        <div class="container">
+            <div class="user-register">
+                <h3>Sign-Up</h3>
+                <form id="user-form" action="http://localhost:8080/saskaita/sukurti" method="POST">
+                    <div class="userName"><input type="text" name="name" placeholder="Name" required></div>
+                    <div class="surName"><input type="text" name="surname" placeholder="Surname" required></div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+            <div class="account">
+                <h2>Balance</h2>
+                <p class="balanceSum">---</p>
+                <form id="cash-in" action="" method="POST">
+                    <div class="imoka"><input type="text" name="balance" placeholder="Cash-in sum">
+                        <button type="submit">Cash-in</button>
+                    </div>
+                </form>
+                <form id="cash-out" action="" method="POST">
+                    <div class="ismoka"><input type="text" name="balance" placeholder="Cash-out sum">
+                        <button type="submit">Cash-out</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="delete">
+            <button class="del">Delete User</button>
+        </div>
+
+        <div class="transactions">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody class="transaction-data">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
