@@ -74,7 +74,7 @@ server.post("/saskaita/:id/ismoka", (req, res) => {
   const number = -Number(req.body.balance);
   const findUser = allUsers.find((usr) => usr.id === id);
 
-  if (number > 0 || findUser.balance + number < 0) {
+  if (number > 0 || +findUser.balance + number < 0) {
     return res
       .status(404)
       .json({ message: "Number must be negative and within balance limit" });

@@ -14,19 +14,27 @@ body {
 
         ol {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
             place-items: left;
             gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 860px;
+            height: auto;
         }
 
         .click-me {
+            text-transform: uppercase;
             cursor: pointer;
             color: blue;
-            text-decoration: underline;
         }
 
-        .click-me:hover {
+        /* .click-me:hover {
             color: darkblue;
+        } */
+
+        .click-me:active {
+            background: orangered;
+            color: white;
         }
     }
 
