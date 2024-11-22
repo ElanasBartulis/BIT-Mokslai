@@ -22,18 +22,41 @@ router.get("/:id", async (req, res) => {
 
 // Vehicle create manual
 router.post("/", async (req, res) => {
-  const body = req.body;
-  const newVehicleResponse = await Vehicle.create(body);
+  const { UserId, ...VehicleData } = req.body;
+
+  if (!UserId) return res.status(400).send({ error: "UserId is required" });
+
+  const doesUserExist = await User.findByPk(UserId);
+  if (!doesUserExist)
+    return res.status(404).send({ error: `User with ID ${UserId} not found` });
+
+  const newVehicleResponse = await Vehicle.create({
+    ...VehicleData,
+    UserId,
+  });
   res.status(200).send(newVehicleResponse);
 });
 
 // Vehicle bulk create
 router.post("/auto/:count?", async (req, res) => {
-  let count = +req.params.count;
+  const { count, UserId } = req.query;
+  Number(count);
+
   if (!count || count <= 0 || count > 50) {
     count = 1;
   }
-  const vehicles = Array.from({ length: count }, () => generateNewVehicle());
+
+  if (!UserId) return res.status(400).send({ error: "UserId is required" });
+
+  const doesUserExist = await User.findByPk(UserId);
+  if (!doesUserExist)
+    return res.status(404).send({ error: `User with ID ${UserId} not found` });
+
+  const vehicles = Array.from({ length: count }, () => ({
+    UserId,
+    ...generateNewVehicle(),
+  }));
+
   const createdVehicles = await Vehicle.bulkCreate(vehicles);
   res.status(200).send(createdVehicles);
 });

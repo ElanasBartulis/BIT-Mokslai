@@ -8,8 +8,48 @@ const router = express.Router();
 
 // Visi User
 router.get("/", async (req, res) => {
-  const allUsers = await User.findAll();
-  res.status(200).send(allUsers);
+  try {
+    const { vehicles, hasVehicleCount } = req.query;
+
+    // if hasVehicleCount provided
+    if (hasVehicleCount) {
+      // if hasVehicleCount is a number
+      if (isNaN(hasVehicleCount)) {
+        return res
+          .status(400)
+          .send({ error: "hasVehicleCount must be a valid number" });
+      }
+
+      // Make sure its a number
+      const vehicleCount = Number(hasVehicleCount);
+
+      // get all users with vehicles
+      const allUsers = await User.findAll({
+        include: [
+          {
+            model: Vehicle,
+          },
+        ],
+      });
+
+      // filter with exact number of vehicles
+      const filteredUsers = allUsers.filter(
+        (user) => user.vehicles.length === vehicleCount
+      );
+      return res.status(200).send(filteredUsers);
+    }
+
+    const includeVehicles = vehicles === "yes";
+    const allUsers = await User.findAll({
+      include: includeVehicles ? [{ model: Vehicle }] : [],
+    });
+    res.status(200).send(allUsers);
+  } catch (error) {
+    console.error("Error:", error.message);
+    res
+      .status(500)
+      .send({ error: "Something went wrong", details: error.message });
+  }
 });
 
 // User pagal ID
