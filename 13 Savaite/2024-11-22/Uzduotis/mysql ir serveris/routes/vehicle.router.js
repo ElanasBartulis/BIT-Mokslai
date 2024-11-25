@@ -1,7 +1,7 @@
 import express from "express";
-import Vehicle from "../modules/Vehicle.model.js";
+import Vehicle from "../models/Vehicle.model.js";
 import faker from "../faker.js";
-import User from "../modules/User.model.js";
+import User from "../models/User.model.js";
 const { generateNewVehicle } = faker;
 
 const router = express.Router();
