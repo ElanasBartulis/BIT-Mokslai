@@ -1,9 +1,17 @@
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
-const sequelize = new Sequelize("auto_test", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
-});
+dotenv.config();
+
+const sequelize = new Sequelize(
+  process.env["DB_NAME"],
+  process.env["DB_USERNAME"],
+  process.env["DB_PASSWORD"],
+  {
+    host: process.env["DB_HOST"],
+    dialect: "mysql",
+  }
+);
 
 try {
   await sequelize.authenticate();

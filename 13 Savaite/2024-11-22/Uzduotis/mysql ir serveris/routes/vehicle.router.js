@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 });
 
 // Vehicle bulk create
-router.post("/auto/:count?", async (req, res) => {
+router.post("/auto/", async (req, res) => {
   const { count, UserId } = req.query;
   Number(count);
 
