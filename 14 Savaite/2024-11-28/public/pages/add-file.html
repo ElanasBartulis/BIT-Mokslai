@@ -13,9 +13,10 @@
         <a href="/protected">Protected page</a>
     </header>
     <h1>Upload file</h1>
-    <form action="#" enctype="multipart/form-data">
-        <input type="file" name="">
-        <button>Submit</button>
+    <form action="/" enctype="multipart/form-data" method="post">
+        <p>Private: <input type="checkbox" name="private"></p>
+        <input type="file" name="upload">
+        <button type="submit">Submit</button>
     </form>
     <a href="/logout">
         <p>Logout</p>

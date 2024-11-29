@@ -13,9 +13,59 @@
         <a href="/protected">Protected Page</a>
     </header>
     <h1>Viesai patalpinti failai</h1>
+    <input id="Search" type="text" placeholder="Search...">
+    <table>
+        <thead>
+            <tr>
+                <th>Nr</th>
+                <th>File-Name</th>
+                <th>View</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody id="file-list">
+
+        </tbody>
+    </table>
     <a href="/logout">
         <p>Logout</p>
     </a>
+
+    <script>
+        let allFiles = [];
+
+        async function loadList() {
+            const response = await fetch("/all-public-files");
+            allFiles = await response.json();
+            renderList(allFiles);
+        }
+
+        function renderList(files) {
+            const fileListElement = document.getElementById('file-list');
+            fileListElement.innerHTML = "";
+
+            files.forEach((file, index) => {
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${file}</td>
+                        <td><a href="/public/${file}">View</a></td>
+                        <td><a href="/public/${file}" download >Download</a></td>
+                    </tr>
+                `;
+                fileListElement.innerHTML += row;
+            });
+        }
+
+        const searchInput = document.getElementById('Search');
+        searchInput.addEventListener("input", () => {
+            const toLower = searchInput.value.toLowerCase();
+            const filteredInput = allFiles.filter(file => file.toLowerCase().includes(toLower));
+            renderList(filteredInput);
+        });
+
+        loadList();
+    </script>
 </body>
 
 </html>
