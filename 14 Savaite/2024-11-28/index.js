@@ -176,6 +176,11 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// Tailwind
+app.get("/output.css", (req, res) => {
+  res.sendFile(path.join(pagesFolder, "output.css"));
+});
+
 app.listen(3000, () => {
   console.log("Serveris veikia. http://localhost:3000");
 });
