@@ -17,7 +17,7 @@ export default function Component6() {
           key={i}
           className="bg-red-500 w-14 h-14 m-4 flex justify-center items-center"
         >
-          {Math.floor(Math.random() * 100) + 1}
+          {Math.floor(Math.random() * (200 - 100) + 100) + 1}
         </div>
       );
     }
