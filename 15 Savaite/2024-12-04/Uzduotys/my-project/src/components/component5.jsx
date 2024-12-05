@@ -15,7 +15,6 @@ export default function Component10() {
   function colorChange(e) {
     setColor(e.target.value);
   }
-  console.log(color);
 
   function makeSquare() {
     const defaultSquare = {
@@ -78,7 +77,7 @@ export default function Component10() {
 
         <div>
           <label>
-            <input type="color" value={colorChange} />
+            <input type="color" value={color} onChange={colorChange} />
             Color
           </label>
         </div>
