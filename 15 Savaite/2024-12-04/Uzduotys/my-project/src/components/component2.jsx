@@ -3,9 +3,10 @@ import { useState } from "react";
 export default function Component7() {
   const [name, setName] = useState("");
   const [weight, setWeight] = useState(0);
-  const [list, setList] = useState([]);
-  const storedList = localStorage.getItem("kittyList");
-  const parsedList = storedList ? JSON.parse(storedList) : [];
+  const [list, setList] = useState(() => {
+    const storedList = localStorage.getItem("kittyList");
+    return storedList ? JSON.parse(storedList) : [];
+  });
 
   function getName(e) {
     const value = e.target.value;
@@ -33,10 +34,9 @@ export default function Component7() {
     <>
       <div>
         <h2>
-          Total Weight:{" "}
-          {parsedList.reduce((total, item) => total + item.weight, 0)}
+          Total Weight: {list.reduce((total, item) => total + item.weight, 0)}
         </h2>
-        {parsedList
+        {list
           .sort((a, b) => b.weight - a.weight)
           .map((item, index) => {
             return (
