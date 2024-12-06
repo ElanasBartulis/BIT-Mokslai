@@ -34,8 +34,8 @@ export default function Component10() {
   function saveSquare() {
     setListOfSquares((prev) => [...prev, { ...square }]);
     setSquare({
-      width: "",
-      height: "",
+      width: 0,
+      height: 0,
       backgroundColor: "",
     });
   }
