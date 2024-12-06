@@ -1,84 +1,101 @@
 import { useState } from "react";
 
 export default function Component10() {
-  const [square, setSquare] = useState([]);
-  const [plotisRange, setPlotisRange] = useState(100);
-  const [aukstisRange, setAukstisRange] = useState(100);
-  const [color, setColor] = useState("#000000");
+  const [square, setSquare] = useState({
+    width: "",
+    height: "",
+    backgroundColor: "",
+  });
+  const [listOfSquares, setListOfSquares] = useState([]);
 
   function plotisRangeChange(e) {
-    setPlotisRange(e.target.value);
+    const width = Number(e.target.value);
+    setSquare((prev) => ({ ...prev, width }));
   }
+
   function aukstisRangeChange(e) {
-    setAukstisRange(e.target.value);
+    const height = Number(e.target.value);
+    setSquare((prev) => ({ ...prev, height }));
   }
+
   function colorChange(e) {
-    setColor(e.target.value);
+    const backgroundColor = e.target.value;
+    setSquare((prev) => ({ ...prev, backgroundColor }));
   }
 
   function makeSquare() {
-    const defaultSquare = {
-      width: `${plotisRange}px`,
-      height: `${aukstisRange}px`,
-      backgroundColor: color,
-    };
-    setSquare([...square, defaultSquare]);
+    setSquare({
+      width: 100,
+      height: 100,
+      backgroundColor: "#000000",
+    });
   }
 
-  //   function editPlotis(e) {
-  //     const pixels = `${e.target.value}px`;
-  //     setSquare((prevSquare) => {
-  //       const copyOfPrevious = [...prevSquare];
-  //       const lastElement = copyOfPrevious.length - 1;
-
-  //       if (copyOfPrevious.length > 0) {
-  //         copyOfPrevious[lastElement] = {
-  //           ...copyOfPrevious[lastElement],
-  //           width: pixels,
-  //         };
-  //       }
-  //       return copyOfPrevious;
-  //     });
-  //   }
+  function saveSquare() {
+    setListOfSquares((prev) => [...prev, { ...square }]);
+    setSquare({
+      width: "",
+      height: "",
+      backgroundColor: "",
+    });
+  }
 
   return (
     <>
       <div className="flex flex-col gap-1 m-4">
+        <div
+          style={{
+            width: `${square.width}px`,
+            height: `${square.height}px`,
+            backgroundColor: square.backgroundColor,
+          }}
+        ></div>
+
         <div className="flex flex-row flex-wrap gap-4">
-          {square.map((style, index) => (
-            <div key={index} style={style}></div>
+          {listOfSquares.map((style, index) => (
+            <div
+              key={index}
+              style={{
+                width: `${style.width}px`,
+                height: `${style.height}px`,
+                backgroundColor: style.backgroundColor,
+              }}
+            ></div>
           ))}
         </div>
+
         <div>
           <label>
+            Plotis:
             <input
               type="range"
               min="10"
               max="200"
-              value={plotisRange}
+              value={square.width}
               onChange={plotisRangeChange}
             />
-            Plotis
           </label>
         </div>
-
         <div>
           <label>
+            Aukštis:
             <input
               type="range"
               min="10"
               max="200"
-              value={aukstisRange}
+              value={square.height}
               onChange={aukstisRangeChange}
             />
-            Aukstis
           </label>
         </div>
-
         <div>
           <label>
-            <input type="color" value={color} onChange={colorChange} />
-            Color
+            Spalva:
+            <input
+              type="color"
+              value={square.backgroundColor}
+              onChange={colorChange}
+            />
           </label>
         </div>
 
@@ -88,7 +105,10 @@ export default function Component10() {
         >
           Sukurti
         </button>
-        <button className="bg-blue-500 hover:bg-blue-600 border px-4 py-1 rounded-sm text-white w-24">
+        <button
+          className="bg-blue-500 hover:bg-blue-600 border px-4 py-1 rounded-sm text-white w-24"
+          onClick={saveSquare}
+        >
           Išsaugoti
         </button>
       </div>
