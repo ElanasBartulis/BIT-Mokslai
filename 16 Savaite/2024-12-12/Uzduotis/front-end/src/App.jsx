@@ -1,10 +1,10 @@
-import Button from "@mui/material/Button";
+import AllScooters from "./components/AllScooters";
 function App() {
-	return (
-		<>
-			<Button variant="contained">tekstas</Button>
-		</>
-	);
+  return (
+    <>
+      <AllScooters />
+    </>
+  );
 }
 
 export default App;
